@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :admins #ADMINS
     resources :subjects #ASSUNTOS / ÁREAS
     resources :questions # PERGUNTASS
+    resources :tests
   end
   
   devise_for :admins, skip: [:registrations]

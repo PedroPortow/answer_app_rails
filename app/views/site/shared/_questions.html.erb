@@ -1,7 +1,6 @@
 <!-- Main component for a primary marketing message or call to action -->
 <div class="jumbotron">
   <%= msg_jumbotron %>
-
 </div>
 
 
@@ -9,11 +8,7 @@
   <%= form_with url: site_answer_path do |form| %>
     <div class="panel panel-default">
       <div class="panel-heading">
-        <span style="margin-right: 10px; 
-                     background-color: blue; 
-                     
-                     font-weight: bold;
-                     padding: 4px;"> 
+        <span style="margin-right: 10px; background-color: blue; font-weight: bold;padding: 4px;"> 
           <%= link_to "#{question.subject.description} (#{question.subject.questions_count})", site_search_subject_path(question.subject_id, question.subject.description), style:"color: white;" %> 
         </span>
         <h3 class="panel-title"><%= question.description %></h3>
