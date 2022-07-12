@@ -3,7 +3,11 @@ class AdminsBackoffice::SubjectsController < AdminsBackofficeController
   # before_action :params_subject, only: [:update]
   
   def index
-    @subjects = Subject.all.order(:description).page(params[:page]).per(5)
+    respond_to do |format|
+     format.html { @subjects = Subject.all.order(:description).page(params[:page]).per(5)}
+     format.pdf { @subjects = Subject.all.order(:description)}
+     format.json { @subjects = Subject.all.order(:description)}
+    end
   end
 
   def edit
