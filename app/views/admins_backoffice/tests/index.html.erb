@@ -71,7 +71,7 @@
       <% @tests.each do |test| %>
       <tr class="odd">
         <td class="sorting_1"> <%= test.id %> </td>
-        <td> <%= test.description %></td>
+        <td> <%= test.name %></td>
         <td> 
           <%= link_to edit_admins_backoffice_test_path(test), class: "btn btn-primary btn-circle" do %>
           <i class="fa fa-edit"></i>
@@ -79,7 +79,7 @@
           <%= link_to admins_backoffice_test_path(test), 
             method: :delete, 
             class:"btn btn-danger btn-circle", 
-            data: { confirm: t('messages.confirm_with', item: test.description.truncate(15)) } do %>
+            data: { confirm: t('messages.confirm_with', item: test.name.truncate(15)) } do %>
           <i class="fa fa-minus"></i>
           <% end %>
         </td>

@@ -90,7 +90,11 @@ end
 desc "Adiciona Avaliações Padrão"
   task add_tests: :environment do
   Test.create!([
-    { name: 'Teste 1', subject: Subject.all.sample, questions_ids: [Question.first.id, Question.all[2].id, Question.all[3].id]}
+    { 
+      name: 'Teste 1',
+      subject: Subject.all.sample,
+      question_ids: [Question.first.id, Question.all[2].id, Question.all[3].id]
+    }
   ])
 end
 
