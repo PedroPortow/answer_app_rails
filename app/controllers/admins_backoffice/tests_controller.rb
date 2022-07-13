@@ -1,8 +1,9 @@
 class AdminsBackoffice::TestsController < AdminsBackofficeController
-  #Controller para as provas(tests)
-
+  before_action :set_test, only: [:edit, :update, :destroy]
+  before_action :params_test, only: [:update]
+  
   def index
-   @tests = Test.all
+    @tests = Test.all.includes(:subject)
    
   end
 
@@ -48,7 +49,7 @@ class AdminsBackoffice::TestsController < AdminsBackofficeController
     end
 
     def params_test
-      params.require(:test).permit(:description)
+      params.require(:test).permit(:description, :subject, :question)
     end
   
 end

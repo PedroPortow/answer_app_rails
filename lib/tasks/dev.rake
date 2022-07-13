@@ -15,7 +15,7 @@ namespace :dev do
     show_spinner("Cadastrando assuntos padrões...") { %x(rails dev:add_subjects) }
     show_spinner("Cadastrando questões e respostas...") { %x(rails dev:add_answers_and_questions) }
 
-    #show_spinner("Cadastrando avaliações") { %x(rails dev:add_answers_and_questions) }
+    show_spinner("Cadastrando avaliações padrões...") { %x(rails dev:add_tests) }
 
   else
    puts "Você não está em ambiente de desenvolvimento!"
@@ -88,12 +88,10 @@ desc "Reseta o contador dos assuntos"
 end
 
 desc "Adiciona Avaliações Padrão"
-  show_spinner("Cadastrando avaliações") do
-      task add_tests: :enviroment do
-
-      Test.create!()
-    end
-  end
+  task add_tests: :environment do
+  Test.create!([
+    { name: 'Teste 1', subject: Subject.all.sample, questions_ids: [Question.first.id, Question.all[2].id, Question.all[3].id]}
+  ])
 end
 
 
@@ -107,6 +105,7 @@ private
     { question: {
       description: "#{Faker::Lorem.paragraph} #{Faker::Lorem.question}",
       subject: subject,
+      weight: 1,
       answers_attributes: []
       }
     }

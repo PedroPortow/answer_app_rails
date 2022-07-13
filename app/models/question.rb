@@ -1,6 +1,10 @@
 class Question < ApplicationRecord
   belongs_to :subject, counter_cache: true, inverse_of: :questions
   has_many :answers
+  has_many :test_questions
+  has_many :tests, through: :test_questions
+
+  
   accepts_nested_attributes_for :answers, reject_if: :all_blank, allow_destroy: true
 
   paginates_per 5
@@ -8,6 +12,7 @@ class Question < ApplicationRecord
   #callback 
   after_create :set_statistic
 
+  #para querys no DB
   scope :_search_subject_, ->(page, subject_id){
     Question.includes(:answers, :subject).where(subject_id: subject_id).page(page)
   }
