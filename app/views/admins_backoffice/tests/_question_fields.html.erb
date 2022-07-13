@@ -1,0 +1,20 @@
+<div class="nested-fields">
+  ======NÃO TA SENDO USADO=======
+  <%= f.label :description, "Pergunta" %> </br>
+  <%= f.collection_select(:question_id, @questions, :id, :description) %>
+ 
+  <%
+=begin%>
+ <%= f.check_box :correct %> Correta? 
+<%
+=end%>
+
+
+ <%
+=begin%>
+ <%= link_to_remove_association('Remover', f) %>  
+<%
+=end%>
+
+  
+</div>

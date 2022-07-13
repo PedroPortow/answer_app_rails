@@ -3,7 +3,7 @@ class CreateTests < ActiveRecord::Migration[5.2]
     create_table :tests do |t|
       t.string :name
       t.references :subject, foreign_key: true
-      t.references :question, foreign_key: true
+    
 
       t.timestamps
     end

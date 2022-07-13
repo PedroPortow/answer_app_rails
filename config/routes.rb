@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+
   namespace :site do
     get 'welcome/index'
     get 'search', to: 'search#questions'
@@ -17,12 +17,13 @@ Rails.application.routes.draw do
     resources :admins #ADMINS
     resources :subjects #ASSUNTOS / ÁREAS
     resources :questions # PERGUNTASS
-    resources :tests
+    resources :tests # AVALIAÇÕES
+    # resources :test_questions # PARA SELECIONAR AS PERGUNTAS COM DETERMINADO ASSUNTO
   end
-  
+
   devise_for :admins, skip: [:registrations]
   devise_for :users
- 
+
   get 'inicio', to: 'site/welcome#index'
   get 'backoffice', to: 'admins_backoffice/welcome#index'
 

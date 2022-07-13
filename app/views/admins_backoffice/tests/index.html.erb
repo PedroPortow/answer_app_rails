@@ -68,22 +68,23 @@
       </tr>
     </tfoot>
     <tbody>
+
       <% @tests.each do |test| %>
-      <tr class="odd">
-        <td class="sorting_1"> <%= test.id %> </td>
-        <td> <%= test.name %></td>
-        <td> 
-          <%= link_to edit_admins_backoffice_test_path(test), class: "btn btn-primary btn-circle" do %>
-          <i class="fa fa-edit"></i>
-          <% end%>
-          <%= link_to admins_backoffice_test_path(test), 
-            method: :delete, 
-            class:"btn btn-danger btn-circle", 
-            data: { confirm: t('messages.confirm_with', item: test.name.truncate(15)) } do %>
-          <i class="fa fa-minus"></i>
-          <% end %>
-        </td>
-      </tr>
+        <tr class="odd">
+          <td class="sorting_1"> <%= test.id %> </td>
+          <td> <%= test.name %></td>
+          <td> 
+            <%= link_to edit_admins_backoffice_test_path(test), class: "btn btn-primary btn-circle" do %>
+              <i class="fa fa-edit"></i>
+            <% end%>
+            <%= link_to admins_backoffice_test_path(test), 
+              method: :delete, 
+              class:"btn btn-danger btn-circle", 
+              data: { confirm: t('messages.confirm_with', item: test.name.truncate(15)) } do %>
+              <i class="fa fa-minus"></i>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
       
       <%
@@ -94,5 +95,5 @@
 <%
 =end%>
   </table>
-  <%# </div></div><div class="row"><div class="col-sm-12 col-md-5"><div class="dataTables_info" id="dataTable_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="dataTable_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="dataTable_previous"><a href="#" aria-controls="dataTable" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li><li class="paginate_button page-item active"><a href="#" aria-controls="dataTable" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item "><a href="#" aria-controls="dataTable" data-dt-idx="6" tabindex="0" class="page-link">6</a></li><li class="paginate_button page-item next" id="dataTable_next"><a href="#" aria-controls="dataTable" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul></div></div></div></div> %>
+
 </div>

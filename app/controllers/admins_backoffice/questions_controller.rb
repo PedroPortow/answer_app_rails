@@ -42,7 +42,7 @@ before_action :get_subjects, only: [:new, :edit]
   private
 
   def params_question
-    params.require(:question).permit(:description, :subject_id,
+    params.require(:question).permit(:description, :subject_id, :weight,
     answers_attributes: [:id, :description, :correct, :_destroy])
   end
   def set_question
