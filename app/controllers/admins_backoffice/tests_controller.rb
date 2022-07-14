@@ -5,12 +5,12 @@ class AdminsBackoffice::TestsController < AdminsBackofficeController
   before_action :get_questions, only: [:new, :edit]
   
   def index
-    console
     @tests = Test.all.includes(:subject).includes(:questions)
   end
 
   def edit
-   
+    questions_ids = @test.question_ids
+    @questions = Question.find(questions_ids)
   end
 
   def new
@@ -18,10 +18,14 @@ class AdminsBackoffice::TestsController < AdminsBackofficeController
   end
 
   def update
-    if @test.update(params_test)
-      redirect_to admins_backoffice_tests_path, notice: "Teste atualizado com sucesso"
+    if params[:test]    
+      if @test.update(params_test)
+        redirect_to edit_admins_backoffice_test_path(@test), notice: "Prova atualizada com sucesso!"
+      else
+        render :edit
+      end
     else
-      render :edit
+      redirect_to edit_admins_backoffice_test_path(@test), notice: "Prova não pode ficar sem questões!"
     end
   end
 
@@ -29,7 +33,7 @@ class AdminsBackoffice::TestsController < AdminsBackofficeController
     @test = Test.new(params_test)
 
     if @test.save
-      redirect_to admins_backoffice_tests_path, notice: "Teste cadastrado com sucesso"
+      redirect_to edit_admins_backoffice_test_path(@test), notice: "Prova criada com sucesso! Selecione as questões"
     else
       render :edit
     end
@@ -37,8 +41,9 @@ class AdminsBackoffice::TestsController < AdminsBackofficeController
 
 
   def destroy
+    @test.questions.clear
     if @test.destroy
-      redirect_to admins_backoffice_tests_path, notice: "Teste excluido com sucesso"
+      redirect_to admins_backoffice_tests_path, notice: "Avaliação excluido com sucesso"
     else
       render :index
     end
@@ -51,7 +56,12 @@ class AdminsBackoffice::TestsController < AdminsBackofficeController
     end
 
     def params_test
-      params.require(:test).permit(:description, :subject, :question, question_attributes: [:id, :description, :correct, :_destroy])
+      if params[:test]
+        params.require(:test).permit(:name, :subject_id, question_ids: [])
+      else
+        params.permit(:id)
+      end
+
     end
 
     def get_subjects

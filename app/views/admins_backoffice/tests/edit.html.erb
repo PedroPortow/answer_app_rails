@@ -1,2 +1,75 @@
-<%= render partial: 'admins_backoffice/tests/shared/form',
-            locals: {action_message: 'Editando'} %>
+<h1>Editando avaliação</h1>
+
+<div class="row">
+
+  <% if @test.errors.any? %>
+    <div class="alert alert-danger alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+        <ul>
+          <% @test.errors.full_messages.each do |message|%>
+             <li> <%= message %> </li>
+          <% end%>
+         
+        </ul>
+      </button>
+    </div>
+  <% end %>
+
+  <div class="col-lg-12">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+       
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-lg-6">
+
+
+            <%= form_with(model: [ :admins_backoffice, @test], local: true) do |form| %>
+
+              <%= %>
+              <div class="form-group">
+                <%= form.label :name, "Nome da Avaliação"%>
+                <%= form.text_field :name, class:"form-control", id:"_name" %>
+          
+              </div>
+
+              <div class="form-group">
+              
+                <%= form.label :subject,  "Assunto" %> </br>
+                <%= form.collection_select(:subject_id, @subjects, :id, :description,{}, disabled: true ) %>
+            
+              </div> 
+
+             
+              <div id='questions' class="form-group">
+               
+              </div>
+              <%= link_to admins_backoffice_test_questions_path(test: @test, id: @test.subject_id), class: "btn btn-primary" do %>
+                  Selecionar Questões
+              <% end %>
+              <br>
+
+              <hr>
+
+              <% if @test.questions.length > 0 %>
+                <h3>Questões</h3>
+
+                <% @test.questions.each do |question|%>
+                  <%= question.description %> <br>
+                <% end %>
+              <% end %>
+              
+
+           <% end %>
+          </div>
+          <!-- /.col-lg-6 (nested) -->
+        </div>
+        <!-- /.row (nested) -->
+      </div>
+      <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>

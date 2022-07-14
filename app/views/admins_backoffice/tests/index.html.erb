@@ -80,7 +80,7 @@
             <%= link_to admins_backoffice_test_path(test), 
               method: :delete, 
               class:"btn btn-danger btn-circle", 
-              data: { confirm: t('messages.confirm_with', item: test.name.truncate(15)) } do %>
+              data: { confirm: t('messages.confirm_with', item: test.name) } do %>
               <i class="fa fa-minus"></i>
             <% end %>
           </td>

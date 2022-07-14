@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     get 'profile', to: 'profile#edit'
     patch 'profile', to: 'profile#update'
     get 'zip_code', to: 'zip_code#show'
+
   end
   namespace :admins_backoffice do
     get 'welcome/index' # DASHBOARD
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
     resources :subjects #ASSUNTOS / ÁREAS
     resources :questions # PERGUNTASS
     resources :tests # AVALIAÇÕES
-    # resources :test_questions # PARA SELECIONAR AS PERGUNTAS COM DETERMINADO ASSUNTO
+     resources :test_questions # PARA SELECIONAR AS PERGUNTAS COM DETERMINADO ASSUNTO
   end
 
   devise_for :admins, skip: [:registrations]

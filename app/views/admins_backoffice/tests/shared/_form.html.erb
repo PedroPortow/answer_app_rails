@@ -30,37 +30,49 @@
               <%= %>
               <div class="form-group">
                 <%= form.label :name, "Nome da Avaliação"%>
-                <%= form.text_field :test_name, class:"form-control" %>
+                <%= form.text_field :name, class:"form-control" %>
           
               </div>
 
               <div class="form-group">
               
                 <%= form.label :subject,  "Assunto" %> </br>
-                <%= form.collection_select(:subject_id, @subjects, :id, :description) %>
+                <%= form.collection_select(:subject_id, @subjects, :id, :description,{} ) %>
             
               </div> 
 
+            
+              <%= form.submit "Salvar", class:"btn btn-primary", id:"btn"%>
               
-              <div id='questions' class="form-group">
-                
-                <%= form.label :description, "Pergunta" %> </br>
-                <%= form.collection_select(:question_id, @questions, :id, :description) %> 
-
-                <%= link_to "Buscar Questoes", class:"btn btn-primary mt-5" %>
               
-              </div>
-
-             <button type="submit" class="btn btn-default">Salvar</button>
+        
            <% end %>
+           
           </div>
           <!-- /.col-lg-6 (nested) -->
         </div>
         <!-- /.row (nested) -->
+        
       </div>
       <!-- /.panel-body -->
     </div>
     <!-- /.panel -->
+    <hr>
   </div>
   <!-- /.col-lg-12 -->
 </div>
+
+
+
+  <script>
+                // const btn = document.getElementById('btn')
+                // const select = document.getElementById('test_subject_id')
+
+                // select.addEventListener("change", () => {
+                //   console.log('mudou', select.value)
+                 
+                //   btn.href = `<%= admins_backoffice_test_questions_path(test: @test) %>/?subject_id=${ select.value }`
+                //   //btn.href = `<%= admins_backoffice_test_questions_path( ) %>/?test=<%= @test.id %>&subject_id=${select.value }`
+                // })
+              
+  </script>
