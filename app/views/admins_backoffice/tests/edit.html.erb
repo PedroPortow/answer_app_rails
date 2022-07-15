@@ -48,6 +48,9 @@
               <%= link_to admins_backoffice_test_questions_path(test: @test, id: @test.subject_id), class: "btn btn-primary" do %>
                   Selecionar Questões
               <% end %>
+              <%= link_to admins_backoffice_tests_path, class:"btn btn-light" do %>
+                  Voltar para Avaliações
+              <% end %>
               <br>
 
               <hr>
@@ -62,6 +65,8 @@
               
 
            <% end %>
+
+          
           </div>
           <!-- /.col-lg-6 (nested) -->
         </div>

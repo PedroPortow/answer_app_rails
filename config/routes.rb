@@ -11,6 +11,9 @@ Rails.application.routes.draw do
     get 'profile', to: 'profile#edit'
     patch 'profile', to: 'profile#update'
     get 'zip_code', to: 'zip_code#show'
+    get 'tests', to: 'tests#index'
+    get 'tests/:id', to: 'tests#make'
+    post 'tests/:id', to: 'tests#check'
 
   end
   namespace :admins_backoffice do

@@ -56,6 +56,11 @@
                       <i class="fa fa-user"></i> Dados do perfil
                     <% end %>
                   </li>
+                  <li>
+                    <%= link_to users_backoffice_tests_path do %>
+                      <i class="fa fa-user"></i> Avaliações
+                    <% end %>
+                  </li>
                 </ul>
               </div>
 
@@ -181,9 +186,9 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        <div class="right_col" role="main">
+        <div class="right_col " role="main">
           <div class="">
-            <div class="page-title">
+            <div class="page-title ">
               <%= yield %>
             </div>
           </div>
