@@ -12,10 +12,11 @@
         </tr>
       </thead>
       <tbody>
+
         <% @tests.each do |test| %>
           <th scope="row"> <%= test.id  %></th>
           <td><%= link_to test.name, users_backoffice_path(test.id), class:'btn btn-primary' %></td>
-          <td>TODO</td>
+          <td><%= test.updated_at %></td>
           <td>TODO</td>
         </tr>
         <% end %>
@@ -24,3 +25,4 @@
   </div>
   
 </div>
+

@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     get 'tests', to: 'tests#index'
     get 'tests/:id', to: 'tests#make'
     post 'tests/:id', to: 'tests#check'
+    get 'tests/:id/result', to: 'tests#results'
+    get 'tests/:id/show', to: 'tests#show'
 
   end
   namespace :admins_backoffice do
