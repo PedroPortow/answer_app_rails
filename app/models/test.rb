@@ -2,6 +2,8 @@ class Test < ApplicationRecord
   belongs_to :subject #, counter_cache: true, inverse_of: :questions
   has_many :test_questions
   has_many :questions, through: :test_questions
+  has_many :user_tests
+  has_many :users, through: :user_tests
 
   # accepts_nested_attributes_for :questions, reject_if: :all_blank, allow_destroy: true
 
