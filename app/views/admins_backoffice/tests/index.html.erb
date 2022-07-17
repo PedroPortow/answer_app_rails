@@ -32,14 +32,15 @@
           rowspan="1" colspan="1" 
           aria-sort="ascending" a
           ria-label="Name: activate to sort column descending" 
-          style="width: 169px;">
+          style="width: 10%;">
           #
         </th>
-        <th class="sorting" 
+        <th 
+          class="sorting" 
           tabindex="0" aria-controls="dataTable" r
           owspan="1" 
           colspan="1" aria-label="Position: activate to sort column ascending" 
-          style="width: 259px;">
+          style="width: 80%;">
           Avaliações
         </th>
         <th 
@@ -49,12 +50,10 @@
           rowspan="1" 
           colspan="1" 
           aria-label="Office: activate to sort column ascending"
-          style="width: 121px;">
+          style="width: 10%;">
           <%= link_to new_admins_backoffice_test_path, class: "btn btn-success btn-circle" do %>
           <i class="fa fa-plus"></i>
           <% end%>
-       
-         
         </th>
        
       </tr>
@@ -64,11 +63,9 @@
         <th rowspan="1" colspan="1">#</th>
         <th rowspan="1" colspan="1">Avaliações</th>
         <th rowspan="1" colspan="1"></th>
-        
       </tr>
     </tfoot>
     <tbody>
-
       <% @tests.each do |test| %>
         <tr class="odd">
           <td class="sorting_1"> <%= test.id %> </td>
@@ -86,14 +83,5 @@
           </td>
         </tr>
       <% end %>
-      
-      <%
-=begin%>
- <div class="text-center">
-        <%= paginate @tests %>
-      </div> 
-<%
-=end%>
   </table>
-
 </div>

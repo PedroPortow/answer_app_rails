@@ -1,7 +1,7 @@
 class AdminsBackoffice::TestsController < AdminsBackofficeController
-  before_action :set_test, only: [:edit, :update, :destroy]
-  before_action :params_test, only: [:update]
-  before_action :get_subjects, only: [:new, :edit]
+  before_action :set_test,      only: [:edit, :update, :destroy]
+  before_action :params_test,   only: [:update]
+  before_action :get_subjects,  only: [:new, :edit]
   before_action :get_questions, only: [:new, :edit]
   
   def index
@@ -61,7 +61,6 @@ class AdminsBackoffice::TestsController < AdminsBackofficeController
       else
         params.permit(:id)
       end
-
     end
 
     def get_subjects

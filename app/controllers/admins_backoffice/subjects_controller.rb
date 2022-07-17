@@ -38,7 +38,6 @@ class AdminsBackoffice::SubjectsController < AdminsBackofficeController
   end
 
   def destroy
-    
     if @subject.destroy
       redirect_to admins_backoffice_subjects_path, notice: "Assunto/Área excluido com sucesso!"
     else

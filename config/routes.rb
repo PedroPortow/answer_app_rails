@@ -2,35 +2,35 @@ Rails.application.routes.draw do
 
   namespace :site do
     get 'welcome/index'
-    get 'search', to: 'search#questions'
+    get 'search',                       to: 'search#questions'
     get 'subject/:subject_id/:subject', to: 'search#subject', as: "search_subject"
-    post 'answer', to: 'answer#question'
+    post 'answer',                      to: 'answer#question'
   end
   namespace :users_backoffice do
     get 'welcome/index'
-    get 'profile', to: 'profile#edit'
-    patch 'profile', to: 'profile#update'
-    get 'zip_code', to: 'zip_code#show'
-    get 'tests', to: 'tests#index'
-    get 'tests/:id', to: 'tests#make'
-    post 'tests/:id', to: 'tests#check'
+    get 'profile',          to: 'profile#edit'
+    patch 'profile',        to: 'profile#update'
+    get 'zip_code',         to: 'zip_code#show'
+    get 'tests',            to: 'tests#index'
+    get 'tests/:id',        to: 'tests#make'
+    post 'tests/:id',       to: 'tests#check'
     get 'tests/:id/result', to: 'tests#results'
-    get 'tests/:id/show', to: 'tests#show'
+    get 'tests/:id/show',   to: 'tests#show'
 
   end
   namespace :admins_backoffice do
-    get 'welcome/index' # DASHBOARD
-    resources :admins #ADMINS
-    resources :subjects #ASSUNTOS / ÁREAS
-    resources :questions # PERGUNTASS
-    resources :tests # AVALIAÇÕES
-     resources :test_questions # PARA SELECIONAR AS PERGUNTAS COM DETERMINADO ASSUNTO
+    get 'welcome/index' 
+    resources  :admins 
+    resources  :subjects 
+    resources  :questions 
+    resources  :tests 
+    resources  :test_questions
   end
 
   devise_for :admins, skip: [:registrations]
   devise_for :users
 
-  get 'inicio', to: 'site/welcome#index'
+  get 'inicio',     to: 'site/welcome#index'
   get 'backoffice', to: 'admins_backoffice/welcome#index'
 
   root to: 'site/welcome#index'
