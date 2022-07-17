@@ -1,31 +1,22 @@
 class UsersBackoffice::TestsController < UsersBackofficeController
   before_action :set_test, only: [:make, :results, :show]
-  before_action :set_statistic, only: [:make, :check, :results, :show] 
+  before_action :set_statistic, only: [:results, :show] 
   before_action :set_questions, only: [:make, :show]
 
   def index
-    console
+    # @tests = Test.all.includes(:subject).includes(:questions)
+    @user = User.find(current_user.id)
     @tests = Test.all.includes(:subject).includes(:questions)
+    @grades = UserTest.get_grades(current_user.id)
+    @times = UserTest.get_times(current_user.id)
   end
 
   def show
-    crazyQuery = TestAnswer.select(:question_id, :answer_id).where(:user_id => current_user.id, :test_id => @test.id).to_a
-  
-    @myCrazyHash = {}
-
-    crazyQuery.each do |query|
-      @myCrazyHash[query.question_id] = query.answer_id
-    end
-
-    # correct answers
-    @corrects = Answer.select(:id).where(:id => @myCrazyHash.values, :correct => true).to_a
-
-
-
-    @test_answers =  TestAnswer.all
 
   end
+
   def make
+
   end
 
   def check
@@ -43,41 +34,8 @@ class UsersBackoffice::TestsController < UsersBackofficeController
   end
 
   def results
-    crazyQuery = TestAnswer.select(:question_id, :answer_id).where(:user_id => current_user.id, :test_id => @test.id).to_a
-  
-    @myCrazyHash = {}
-
-    crazyQuery.each do |query|
-      @myCrazyHash[query.question_id] = query.answer_id
-    end
-
-    # correct answers
-    @corrects = Answer.select(:id).where(:id => @myCrazyHash.values, :correct => true).to_a
-
-    # weights
-    heyhey = Question.select(:id, :weight).where(:id => @myCrazyHash.keys).to_a
-
-    @weights = {}
-    heyhey.each do |w|
-      @weights[w.id] = w.weight
-    end
-    
-    test = []
-    @corrects.each do |correct|
-      response = @myCrazyHash.key(correct.id)
-      test.push( @weights[response] )
-    end
-
-    total = 0
-    @weights.values.each do |w|
-      total += w
-    end
-
-    @final_grade = (test.sum / total.to_f) * 10
-
-
+    UserTest.set_test(current_user.id, @test.id, @final_grade)
   end
-
 
   private
 
@@ -94,7 +52,36 @@ class UsersBackoffice::TestsController < UsersBackofficeController
   end
 
   def set_statistic
-  end
+    crazyQuery = TestAnswer.select(:question_id, :answer_id).where(:user_id => current_user.id, :test_id => @test.id).to_a
+    
+    @myCrazyHash = {}
 
-  
+    crazyQuery.each do |query|
+    @myCrazyHash[query.question_id] = query.answer_id
+    end
+
+    # correct answers
+    @corrects = Answer.select(:id).where(:id => @myCrazyHash.values, :correct => true).to_a
+
+    # weights
+    heyhey = Question.select(:id, :weight).where(:id => @myCrazyHash.keys).to_a
+
+    weights = {}
+    heyhey.each do |w|
+      weights[w.id] = w.weight
+    end
+    
+    test = []
+    @corrects.each do |correct|
+      response = @myCrazyHash.key(correct.id)
+      test.push( weights[response] )
+    end
+
+    total = 0
+    weights.values.each do |w|
+      total += w
+    end
+
+    @final_grade = (test.sum / total.to_f) * 10
+  end
 end

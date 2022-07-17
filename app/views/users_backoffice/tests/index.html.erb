@@ -15,9 +15,26 @@
 
         <% @tests.each do |test| %>
           <th scope="row"> <%= test.id  %></th>
-          <td><%= link_to test.name, users_backoffice_path(test.id), class:'btn btn-primary' %></td>
-          <td><%= test.updated_at %></td>
-          <td>TODO</td>
+          <td>
+            <% if @current_user.test_ids.include?(test.id) && @grades.keys.include?(test.id) %>
+                <%= link_to test.name, "/users_backoffice/tests/#{test.id}/show", class:"#{@grades[test.id] >= 7 ? 'btn btn-success' : 'btn btn-danger'}" %>
+            <% else %>
+              <%= link_to test.name, users_backoffice_path(test.id), class:'btn btn-primary' %>
+            <% end %>
+          </td>
+          <td>
+            <% if @times.keys.include?(test.id) %>
+              <%= l @times[test.id] %>
+            <% else %>
+            <% end %>
+          </td>
+          <td>
+            <% if @grades.keys.include?(test.id) %>
+              <%= @grades[test.id].round() %>
+              <% else %>
+            <% end %>
+      </td>
+          
         </tr>
         <% end %>
       </tbody>
@@ -26,3 +43,4 @@
   
 </div>
 
+<%console%>
