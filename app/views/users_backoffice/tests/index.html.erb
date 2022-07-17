@@ -12,12 +12,11 @@
         </tr>
       </thead>
       <tbody>
-
         <% @tests.each do |test| %>
-          <th scope="row"> <%= test.id  %></th>
+          <th scope="row"> <%= test.id  %> </th>
           <td>
             <% if @current_user.test_ids.include?(test.id) && @grades.keys.include?(test.id) %>
-                <%= link_to test.name, "/users_backoffice/tests/#{test.id}/show", class:"#{@grades[test.id] >= 7 ? 'btn btn-success' : 'btn btn-danger'}" %>
+              <%= link_to test.name, "/users_backoffice/tests/#{test.id}/show", class:"#{@grades[test.id] >= 7 ? 'btn btn-success' : 'btn btn-danger'}" %>
             <% else %>
               <%= link_to test.name, users_backoffice_path(test.id), class:'btn btn-primary' %>
             <% end %>
@@ -31,13 +30,12 @@
           </td>
           <td>
             <% if @grades.keys.include?(test.id) %>
-              <%= @grades[test.id].round() %>
+              <%= @grades[test.id].round(2) %>
               <% else %>
                 -
             <% end %>
-      </td>
-          
-        </tr>
+          </td>
+          </tr>
         <% end %>
       </tbody>
     </table>
@@ -45,4 +43,3 @@
   
 </div>
 
-<%console%>
