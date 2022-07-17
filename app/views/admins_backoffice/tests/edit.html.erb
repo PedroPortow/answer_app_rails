@@ -49,6 +49,7 @@
                 <h3>Questões</h3>
                 <% @test.questions.each do |question|%>
                   <%= question.description %> <br>
+                  <p>💪 Peso da questão: <%= question.weight %></p>
                 <% end %>
               <% end %>
            <% end %>
