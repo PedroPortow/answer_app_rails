@@ -23,15 +23,17 @@
             <% end %>
           </td>
           <td>
-            <% if @times.keys.include?(test.id) %>
-              <%= l @times[test.id] %>
+            <% if @test_submission_time.keys.include?(test.id) %>
+              <%= date_formatter(l @test_submission_time[test.id]) %>
             <% else %>
+              -
             <% end %>
           </td>
           <td>
             <% if @grades.keys.include?(test.id) %>
               <%= @grades[test.id].round() %>
               <% else %>
+                -
             <% end %>
       </td>
           

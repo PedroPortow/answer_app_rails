@@ -21,7 +21,7 @@ class UserTest < ApplicationRecord
     return test_grade
   end
 
-  def self.get_times(id)
+  def self.get_test_submission_timestamps(id)
     times = UserTest.select(:test_id, :created_at).where(:user_id => id).to_a
 
     test_time = {}

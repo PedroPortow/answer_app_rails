@@ -8,11 +8,11 @@ class UsersBackoffice::TestsController < UsersBackofficeController
     @user = User.find(current_user.id)
     @tests = Test.all.includes(:subject).includes(:questions)
     @grades = UserTest.get_grades(current_user.id)
-    @times = UserTest.get_times(current_user.id)
+    @test_submission_time = UserTest.get_test_submission_timestamps(current_user.id)
   end
 
   def show
-
+  
   end
 
   def make
