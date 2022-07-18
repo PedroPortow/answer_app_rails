@@ -2,7 +2,6 @@ class UserTest < ApplicationRecord
   belongs_to :user
   belongs_to :test
 
-  #self => n precisa instanciar
   def self.set_test(current_user, test_id, grade)
     newUserTest = UserTest.new
     newUserTest.user_id = current_user

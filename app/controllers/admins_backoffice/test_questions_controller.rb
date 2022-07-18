@@ -11,8 +11,4 @@ class AdminsBackoffice::TestQuestionsController < AdminsBackofficeController
     params.require(:test).permit(:subject_id, :id)
   end
 
-  def set_questions 
-    
-  end
-
 end

@@ -50,7 +50,7 @@ class UsersBackoffice::TestsController < UsersBackofficeController
     params.require(:form_questions).permit!
   end
 
-  def set_statistic
+  def set_statistic 
     crazyQuery = TestAnswer.select(:question_id, :answer_id).where(:user_id => current_user.id, :test_id => @test.id).to_a
     
     @myCrazyHash = {}
