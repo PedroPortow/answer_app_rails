@@ -4,10 +4,9 @@ class UsersBackoffice::TestsController < UsersBackofficeController
   before_action :set_questions, only: [:make, :show]
 
   def index
-    # @tests = Test.all.includes(:subject).includes(:questions)
-    @user = User.find(current_user.id)
     @tests = Test.all.includes(:subject).includes(:questions)
-    @grades = UserTest.get_grades(current_user.id)
+    @user = User.find(current_user.id)
+    @grade = UserTest.get_grades(current_user.id)
     @test_submission_time = UserTest.get_test_submission_timestamps(current_user.id)
   end
 

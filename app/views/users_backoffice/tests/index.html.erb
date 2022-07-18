@@ -15,8 +15,8 @@
         <% @tests.each do |test| %>
           <th scope="row"> <%= test.id  %> </th>
           <td>
-            <% if @current_user.test_ids.include?(test.id) && @grades.keys.include?(test.id) %>
-              <%= link_to test.name, "/users_backoffice/tests/#{test.id}/show", class:"#{@grades[test.id] >= 7 ? 'btn btn-success w-50' : 'btn btn-danger w-50'}" %>
+            <% if @current_user.test_ids.include?(test.id) && @grade.keys.include?(test.id) %>
+              <%= link_to test.name, "/users_backoffice/tests/#{test.id}/show", class:"#{@grade[test.id] >= 7 ? 'btn btn-success w-50' : 'btn btn-danger w-50'}" %>
             <% else %>
               <%= link_to test.name, users_backoffice_path(test.id), class:'btn btn-primary w-50' %>
             <% end %>
@@ -29,9 +29,9 @@
             <% end %>
           </td>
           <td>
-            <% if @grades.keys.include?(test.id) %>
-              <p class="<%= @grades[test.id] >= 7 ? 'btn btn-outline-success w-25 cursor-pointer' : 'btn btn-outline-danger w-25' %>" style="cursor: default">
-                <%= @grades[test.id].round(2) %>
+            <% if @grade.keys.include?(test.id) %>
+              <p class="<%= @grade[test.id] >= 7 ? 'btn btn-outline-success p-2' : 'btn btn-outline-danger p-2' %>" style="cursor: default">
+                <%= @grade[test.id].round(2) %>
               </p>
            
               <% else %>
