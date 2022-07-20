@@ -1,9 +1,10 @@
 <div>
   <h3> <%= @test.name %> </h3>
 </div>
+<% console %>
 
 <%= form_with url: users_backoffice_path, local: true do |form| %>
-  <% @questions.each_with_index do |question, index| %>
+  <% @test.questions.each_with_index do |question, index| %>
     <div class="card w-75">
       <h5 class="card-header"> Questão <%= index + 1 %> </h5>
       <div class="card-body">

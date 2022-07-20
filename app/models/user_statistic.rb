@@ -13,4 +13,5 @@ class UserStatistic < ApplicationRecord
       user_statistic.save
     end
   end
+  
 end

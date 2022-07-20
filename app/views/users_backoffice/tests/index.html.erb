@@ -15,28 +15,18 @@
         <% @tests.each do |test| %>
           <th scope="row"> <%= test.id  %> </th>
           <td>
-            <% if @current_user.test_ids.include?(test.id) && @grade.keys.include?(test.id) %>
-              <%= link_to test.name, "/users_backoffice/tests/#{test.id}/show", class:"#{@grade[test.id] >= 7 ? 'btn btn-success w-50' : 'btn btn-danger w-50'}" %>
+            <% if @current_user.test_ids.include?(test.id) %>
+              <%#= link_to test.name, "/users_backoffice/tests/#{test.id}/show", class:"btn btn-sucess" %>
+              <%= link_to test.name, "#{users_backoffice_path}/tests/#{test.id}/user_tests/", class:"btn btn-sucess" %>
             <% else %>
-              <%= link_to test.name, users_backoffice_path(test.id), class:'btn btn-primary w-50' %>
+              <%= link_to test.name, users_backoffice_path(test.id), class:'btn btn-primary w-100' %>
             <% end %>
           </td>
           <td>
-            <% if @test_submission_time.keys.include?(test.id) %>
-              <%= date_formatter(l @test_submission_time[test.id]) %>
-            <% else %>
-              -
-            <% end %>
+           -
           </td>
           <td>
-            <% if @grade.keys.include?(test.id) %>
-              <p class="<%= @grade[test.id] >= 7 ? 'btn btn-outline-success p-2' : 'btn btn-outline-danger p-2' %>" style="cursor: default">
-                <%= @grade[test.id].round(2) %>
-              </p>
-           
-              <% else %>
-                -
-            <% end %>
+            -
           </td>
           </tr>
         <% end %>

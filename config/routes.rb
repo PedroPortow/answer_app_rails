@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'users_backoffice/test_questions'
   namespace :site do
     get 'welcome/index'
     get 'search',                       to: 'search#questions'
@@ -11,11 +12,15 @@ Rails.application.routes.draw do
     get 'profile',          to: 'profile#edit'
     patch 'profile',        to: 'profile#update'
     get 'zip_code',         to: 'zip_code#show'
-    get 'tests',            to: 'tests#index'
-    get 'tests/:id',        to: 'tests#make'
-    post 'tests/:id',       to: 'tests#check'
-    get 'tests/:id/result', to: 'tests#results'
-    get 'tests/:id/show',   to: 'tests#show'
+
+    get 'tests',                            to: 'tests#index'
+    get 'tests/:id/user_tests/new',         to: 'user_tests#new'
+    post 'tests/:id/user_tests/new',        to: 'user_tests#calculate'
+    get 'tests/:id/user_tests/results',        to: 'user_tests#results'
+    # get 'tests/:id',        to: 'tests#make'
+    # post 'tests/:id',       to: 'tests#check'
+    # get 'tests/:id/result', to: 'tests#results'
+    # get 'tests/:id/show',   to: 'tests#show'
 
   end
   namespace :admins_backoffice do
