@@ -1,5 +1,6 @@
 <h1>Avaliações</h1>
  
+ <% console %>
 <div class="row">
   <div class="animated flipInY col-lg-12 col-md-3 col-sm-6 col-xs-12">
     <table class="table table-hover">
@@ -15,18 +16,21 @@
         <% @tests.each do |test| %>
           <th scope="row"> <%= test.id  %> </th>
           <td>
-            <% if @current_user.test_ids.include?(test.id) %>
-              <%#= link_to test.name, "/users_backoffice/tests/#{test.id}/show", class:"btn btn-sucess" %>
-              <%= link_to test.name, "#{users_backoffice_path}/tests/#{test.id}/user_tests/", class:"btn btn-sucess" %>
+            <% if @current_user.test_ids.include?(test.id) #coisa da grade aqui %>
+             <%= link_to test.name, "/users_backoffice/tests/#{test.id}/user_tests/show", class:'btn btn-success w-50' %>
             <% else %>
-              <%= link_to test.name, users_backoffice_path(test.id), class:'btn btn-primary w-100' %>
+              <%= link_to test.name, new_users_backoffice_test_user_test_path(test.id), class:'btn btn-primary w-50' %>
             <% end %>
           </td>
           <td>
-           -
+            <% if @test_submission_time.keys.include?(test.id) #falta testar pra ver se tafuncionando ainda %>
+              <%= date_formatter(l @test_submission_time[test.id]) %>
+            <% else %>
+              -
+            <% end %>
           </td>
           <td>
-            -
+            TODO GRADE
           </td>
           </tr>
         <% end %>

@@ -3,7 +3,8 @@
 </div>
 <% console %>
 
-<%= form_with url: users_backoffice_path, local: true do |form| %>
+
+<%= form_for([:users_backoffice, @test, @user_test], local: true) do |form| %>
   <% @test.questions.each_with_index do |question, index| %>
     <div class="card w-75">
       <h5 class="card-header"> Questão <%= index + 1 %> </h5>
@@ -11,10 +12,11 @@
         <h5 class="card-title"> <%= question.description %> </h5>
         <hr>
         <ul style="list-style:none;">
-        <%= form.fields_for :answers do |answer| %>
+        <%= form.fields_for :user_test_answers do |answer| %>
             <% question.answers.each do |answer|%>
               <li> 
-                <%= radio_button_tag "form_questions[#{question.id}][]", answer.id %>
+                <%#= radio_button_tag "form_questions[#{question.id}][]", answer.id %> 
+                <%= check_box_tag "[answer_ids][]",  answer.id %> 
                 <span class="card-text"><%= answer.description %></span>
               </li>
             <% end %>

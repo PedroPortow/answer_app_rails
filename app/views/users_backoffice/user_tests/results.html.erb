@@ -1,9 +1,9 @@
-<h1>Resultado para avaliação <%= @user_test.id %></h1>
+<h1>Resultado para avaliação <%= @test.id %></h1>
 
-<h2 class="display-2"><%#= @final_grade.round(2) %></h2>
-
+<h2 class="display-2"><%#= @grade.round(2) %></h2>
+<% console %>
 <hr>
 
 <%#= link_to "Visualizar avaliação", "#{users_backoffice_path}/show", class:"btn btn-primary" %>
 
-<%#= link_to 'Voltar para Avaliações', users_backoffice_tests_path, class:"btn btn-light" %>
+<%= link_to 'Voltar para Avaliações', users_backoffice_tests_path, class:"btn btn-light" %>
