@@ -14,9 +14,8 @@ class UsersBackoffice::UserTestsController < UsersBackofficeController
   def create 
     @user_test = current_user.user_tests.new(params_test)
 
-    if  @user_test.save!
+    if  @user_test.save
       @user_test.grade = UserTest.calc_grade(current_user.id, params[:test_id])
-      @user_test.save
       redirect_to "/users_backoffice/tests/#{params[:test_id]}/user_tests/results"
     else
       render :new
