@@ -1,6 +1,5 @@
 <h1>Avaliações</h1>
  
- <% console %>
 <div class="row">
   <div class="animated flipInY col-lg-12 col-md-3 col-sm-6 col-xs-12">
     <table class="table table-hover">
@@ -22,7 +21,7 @@
               <%= link_to test.name, new_users_backoffice_test_user_test_path(test.id), class:'btn btn-primary w-50' %>
             <% end %>
           </td>
-      
+
             <% if current_user.test_ids.include?(test.id) %>
               <% @current_user_tests.each do |user_test| %>
                 <% if user_test.test_id == test.id %>

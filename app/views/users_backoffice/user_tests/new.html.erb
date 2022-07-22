@@ -1,8 +1,6 @@
 <div>
   <h3> <%= @test.name %> </h3>
 </div>
-<% console %>
-
 
 <%= form_for([:users_backoffice, @test, @user_test], local: true) do |form| %>
   <%= form.hidden_field :test_id, :value => @test.id %>

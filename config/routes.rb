@@ -9,25 +9,15 @@ Rails.application.routes.draw do
   end
   namespace :users_backoffice do
     get 'welcome/index'
-    get 'profile',          to: 'profile#edit'
-    patch 'profile',        to: 'profile#update'
-    get 'zip_code',         to: 'zip_code#show'
+    get 'profile',                            to: 'profile#edit'
+    patch 'profile',                          to: 'profile#update'
+    get 'zip_code',                           to: 'zip_code#show'
+    get 'tests/:test_id/user_tests/results',  to: 'user_tests#results'
 
-    # get 'tests',                              to: 'tests#index'
-    # get 'tests/:id/user_tests/new',           to: 'user_tests#new'
-    # post 'tests/:id/user_tests/new',          to: 'user_tests#create'
-    get 'tests/:test_id/user_tests/results',       to: 'user_tests#results'
-
-    # get 'tests/:id',        to: 'tests#make'
-    # post 'tests/:id',       to: 'tests#check'
-    # get 'tests/:id/result', to: 'tests#results'
-    # get 'tests/:id/show',   to: 'tests#show'
-
-    # resources :tests
+    #nested resources 
     resources :tests do
       resources :user_tests
     end 
-
 
   end
   namespace :admins_backoffice do

@@ -1,15 +1,17 @@
 class UsersBackoffice::UserTestsController < UsersBackofficeController
   before_action :set_test, only: [:new, :results, :show]
+  before_action :set_user_test, only: [:results, :show]
 
   def new
-    if current_user.test_ids.include?(params[:test_id].to_i)
+    if current_user.test_ids.include?(params[:test_id].to_i) #verificar se usuario ta tentando entrar pela url
       redirect_to "/users_backoffice/tests/#{params[:test_id]}/user_tests/show"
     end
-    @user_test = current_user.user_tests.new #já pega o user_id
+    
+    @user_test = current_user.user_tests.new
     @user_test.user_test_answers.new
    end
 
-  def create #save aqui
+  def create 
     @user_test = current_user.user_tests.new(params_test)
 
     if  @user_test.save!
@@ -22,11 +24,10 @@ class UsersBackoffice::UserTestsController < UsersBackofficeController
    end
 
   def results
-    @user_test = UserTest.find_by(test_id: params[:test_id])
+
   end
 
   def show
-    @user_test = UserTest.find_by(test_id: params[:test_id])
     @test_answers = UserTest.search_test_answers(current_user.id, params[:test_id])
   end
 
@@ -34,6 +35,10 @@ class UsersBackoffice::UserTestsController < UsersBackofficeController
 
   def set_test
     @test = Test.find(params[:test_id])
+  end
+
+  def set_user_test
+    @user_test = UserTest.find_by(test_id: params[:test_id])
   end
 
   def params_test

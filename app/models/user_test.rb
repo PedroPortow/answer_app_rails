@@ -29,7 +29,6 @@ class UserTest < ApplicationRecord
       return grade = (correct_answers / all_questions_weight.to_f) * 10
   end
   
-    
   def self.search_test_answers(user_id, test_id)
     return UserTest.where(user_id: user_id, test_id: test_id)[0].answers.to_a
   end

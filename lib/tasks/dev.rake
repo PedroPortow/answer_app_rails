@@ -94,23 +94,7 @@ desc "Adiciona Avaliações Padrão"
       name: 'Teste 1',
       subject: Subject.all.sample,
       question_ids: [Question.first.id, Question.all[2].id, Question.all[3].id]
-    },
-    { 
-      name: 'Teste 2',
-      subject: Subject.all.sample,
-      question_ids: [Question.first.id, Question.all[2].id, Question.all[3].id]
-    },
-    { 
-      name: 'Teste 3',
-      subject: Subject.all.sample,
-      question_ids: [Question.first.id, Question.all[2].id, Question.all[3].id]
-    },
-    { 
-      name: 'Teste 3',
-      subject: Subject.all.sample,
-      question_ids: [Question.first.id, Question.all[2].id, Question.all[3].id]
-    },
-    
+    }
   ])
 end
 
