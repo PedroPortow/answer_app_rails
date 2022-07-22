@@ -25,26 +25,13 @@ class UserTest < ApplicationRecord
       else 
         all_questions_weight += answer.question.weight
       end
-    
-
-      return grade = (correct_answers / all_questions_weight) * 10
     end
+      return grade = (correct_answers / all_questions_weight.to_f) * 10
   end
   
     
   def self.search_test_answers(user_id, test_id)
     return UserTest.where(user_id: user_id, test_id: test_id)[0].answers.to_a
-
-  end
-
-  def self.get_test_submission_timestamps(id)
-    times = UserTest.select(:test_id, :created_at).where(:user_id => id).to_a
-
-    test_time = {}
-    times.each do |t|
-      test_time[t.test_id] = t.created_at
-    end
-    return test_time
   end
 
 end
