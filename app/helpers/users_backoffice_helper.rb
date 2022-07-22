@@ -6,7 +6,7 @@ module UsersBackofficeHelper
   end
 
   def date_formatter(to_date)
-    DateTime.parse(to_date).localtime.strftime '%Y-%m-%d %H:%M:%S'
+    DateTime.parse(to_date).localtime.strftime '%d-%m-%Y %H:%M:%S'
   end
 
 

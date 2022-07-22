@@ -12,10 +12,10 @@
     <ul style="list-style:none;">
       <% question.answers.each do |answer|%>
         <li> 
-          <%#= radio_button_tag "form_questions[#{question.id}][]", answer.id %> 
-          <%= check_box_tag "[answer_ids][]",  answer.id, {}, disabled: true %> 
-          
-          <span class="card-text"><%= answer.description %></span>
+          <%= radio_button_tag "form_questions[#{question.id}][]", answer.id, (@test_answers), disabled: true %>
+          <span class="<%= answer.correct? ? 'w-100 bg-green' : 'w-100 bg-red' %>">
+            <%= answer.description %>
+          </span>
         </li>
       <% end %>
     </ul>

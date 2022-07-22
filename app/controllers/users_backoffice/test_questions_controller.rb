@@ -1,2 +1,0 @@
-class UsersBackoffice::TestQuestionsController < UsersBackofficeController
-end

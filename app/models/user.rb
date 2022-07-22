@@ -6,8 +6,8 @@ class User < ApplicationRecord
 
   has_one :user_profile
   has_many :user_tests
-  
   has_many :tests, through: :user_tests
+  has_many :answers, through: :user_test_answers
 
 
   accepts_nested_attributes_for :user_profile, reject_if: :all_blank

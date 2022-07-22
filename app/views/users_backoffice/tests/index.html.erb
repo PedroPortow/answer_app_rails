@@ -16,22 +16,38 @@
         <% @tests.each do |test| %>
           <th scope="row"> <%= test.id  %> </th>
           <td>
-            <% if @current_user.test_ids.include?(test.id) #coisa da grade aqui %>
-             <%= link_to test.name, "/users_backoffice/tests/#{test.id}/user_tests/show", class:'btn btn-success w-50' %>
+            <% if @current_user.test_ids.include?(test.id) #falta pegar nota pra mudar cor do botão %>
+             <%= link_to test.name, "/users_backoffice/tests/#{test.id}/user_tests/show", class:'btn btn-secondary w-50' %>
             <% else %>
               <%= link_to test.name, new_users_backoffice_test_user_test_path(test.id), class:'btn btn-primary w-50' %>
             <% end %>
           </td>
-          <td>
-            <% if @test_submission_time.keys.include?(test.id) #falta testar pra ver se tafuncionando ainda %>
-              <%= date_formatter(l @test_submission_time[test.id]) %>
+      
+            <% if current_user.test_ids.include?(test.id) %>
+              <% @current_user_tests.each do |user_test| %>
+                <% if user_test.test_id == test.id %>
+                  <td>
+                    <%= date_formatter(l user_test.created_at) %>
+                  </td>
+                  <td>
+                    <p class="<%= user_test.grade >= 7 ? 'btn btn-outline-success p-2' : 'btn btn-outline-danger p-2' %>" style="cursor: default">
+                      <%= user_test.grade.round(2) %>
+                    </p>
+                  </td>
+                <% end %>
+              <% end %>
             <% else %>
-              -
+              <td>
+                -
+              </td>
+              <td>
+                -
+            </td>
             <% end %>
-          </td>
-          <td>
-            TODO GRADE
-          </td>
+      
+         
+        
+         
           </tr>
         <% end %>
       </tbody>
